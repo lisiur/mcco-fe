@@ -40,7 +40,7 @@
     <div class="content">
       <el-divider></el-divider>
       <iframe
-        :src="'/mcco-materiel-store' + materielVer.doc"
+        :src="materielVer.doc"
         width="100%"
         height="100%"
         frameborder="0"
@@ -129,7 +129,7 @@ export default {
       this.addMaterielVerToProjectVisible = true
     },
     onViewDocInNewWindow() {
-      window.open('/mcco-materiel-store' + this.materielVer.doc)
+      window.open(this.materielVer.doc)
     },
     async doAddToProject() {
       await this.$service.addMaterielVerToProject({
