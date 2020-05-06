@@ -16,27 +16,27 @@ const routes = [
     },
     children: [
       {
-        path: '/',
+        path: '',
         name: 'Mcco',
         component: () => import('@/views/mcco/Mcco.vue'),
       },
       {
-        path: '/materiel/:platform',
+        path: 'materiel/:platform',
         name: 'Materiel',
         component: () => import('@/views/materiel/Materiel.vue'),
       },
       {
-        path: '/materiel/:platform/:versionId',
+        path: 'materiel/:platform/:versionId',
         name: 'MaterielDetail',
         component: () => import('@/views/materiel/MaterielDetail.vue'),
       },
       {
-        path: '/project',
+        path: 'project',
         name: 'Project',
         component: () => import('@/views/project/Project.vue'),
       },
       {
-        path: '/project/:projectId',
+        path: 'project/:projectId',
         name: 'ProjectDetail',
         component: () => import('@/views/project/ProjectDetail.vue'),
       },

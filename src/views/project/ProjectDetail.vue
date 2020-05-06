@@ -317,7 +317,7 @@ export default {
       })
     },
     onCopyProjectSourcePath() {
-      const projectSourcePath = location.origin + '/source/project/' + this.project.id
+      const projectSourcePath = location.origin + '/mcco/api/source/project/' + this.project.id
       copyTextToClipboard(projectSourcePath)
       .then(() => {
         this.$notify.success('复制成功')

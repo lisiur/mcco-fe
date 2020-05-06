@@ -1,7 +1,7 @@
 <template>
   <div class="materiel-card-comp">
     <div class="preview">
-      <iframe ref="iframe" width="100%" height="100%" :src="demoUrl" frameborder="0" scrolling="no" />
+      <iframe ref="iframe" width="100%" height="100%" :src="'/mcco-materiel-store' + demoUrl" frameborder="0" scrolling="no" />
     </div>
     <el-divider content-position="left">
       <span style="font-size: 16px;font-weight: bold; margin-right: 4px;">{{model.name}}</span>

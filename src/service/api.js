@@ -1,4 +1,6 @@
-const context = ''
+const context = process.env.NODE_ENV === 'production'
+    ? '/mcco/api'
+    : ''
 
 export default {
   register: `${context}/auth/register`,

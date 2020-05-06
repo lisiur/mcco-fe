@@ -1,6 +1,6 @@
 <template>
   <div class="mcco-view">
-    <iframe src="./mcco/index.html" frameborder="0"></iframe>
+    <iframe src="./doc/index.html" frameborder="0"></iframe>
   </div>
 </template>
 
