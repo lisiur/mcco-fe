@@ -14,8 +14,10 @@ MCCO 是一个基于 Vue 的**低侵入**、**热插拔**、**物料高效共享
 **物料**: 基于原子组件搭建的复杂组件或适用于某一特定场景的业务组件。  
 :::
 
-::: warning 提示
-目前 MCCO 支持的原子组件库为 [ElementUI](https://element.eleme.cn/#/zh-CN/component/installation)。
+::: tip 提示
+目前 MCCO 支持的原子组件库包含:
+- [ElementUI](https://element.eleme.cn/#/zh-CN/component/installation)
+- [IView](https://www.iviewui.com/docs/guide/install)
 :::
 
 ### 它是如何工作的？
@@ -23,54 +25,56 @@ MCCO 是一个基于 Vue 的**低侵入**、**热插拔**、**物料高效共享
 MCCO 集成了 `@vue/cli-service-global` 的快速原型开发功能，开发者可以使用 MCCO 快速开发物料并发布到 MCCO 的`物料市场`。
 同时 MCCO 还集成了 `vuepress`, 开发者可以在开发物料的同时，编写相应的示例文档。
 
-开发者只需引入 MCCO `注册器` 和 `Materiel` 即可使用在线市场的任一物料。
+开发者只需引入 [mcco](https://www.npmjs.com/package/mcco) 即可使用在线市场的任一物料。
 
-MCCO 同时提供快照功能，发布线上版本时，可以提供一个项目物料的本地版本，确保线上版本不受影响。
-
-需要移除 MCCO 时，MCCO 提供下载物料源码（Vue 文件）的功能，供开发者无缝替换。
+开发者在开发时默认使用远程注册组件的方式，实时同步物料市场的组件。同时`物料市场`提供了下载项目物料源码功能，配合 [mcco](https://www.npmjs.com/package/mcco) 开发者可以无缝切换到源码开发(供生产环境使用)。
 
 ::: tip 释义
 **物料市场**: MCCO 拥有一个线上市场供开发者分享物料或选择物料到指定项目中。
-
-**注册器**: 一段 JS 脚本，能够识别`物料市场`的项目，搭配 `Materiel`使用。
-
-**Materiel**: 一个 Vue 组件，可以远程加载在线市场的物料。
 :::
-
-::: warning 提示
-事实上，MCCO 会将注册器和Materiel集成到一个脚本中，所以实际上只需引用一个脚本即可。
-:::
-
 
 ## 快速上手
 
 ### 安装
 
-在 `index.html` 中引入 `mcco.css` 和 `mcco.js` 即完成 MCCO 的安装。
-
-然后引入物料市场的某个项目脚本即可使用该项目中选择的物料。
-
-`index.html`
-``` html
-<link rel="stylesheet" href="mcco.css">
-<script src="mcco.js"></script>
-<script src="source/project/5eaffdfaa921357a76f1b8d6"></script>
+``` bash
+npm install mcco
 ```
 
-## 开发物料
+### 使用
+
+``` js
+import Vue from 'vue'
+import Materiel from 'mcco'
+
+Vue.use(Materiel, {
+  url: '',
+  materiels: {},
+})
+
+```
+
+``` vue
+<template>
+  <Materiel name="materiel-name"></Materiel>
+</template>
+```
+
+## 物料开发
 
 ``` bash
 npm install -g mcco-script # 安装 mcco-script
-mcco-script materiel create <物料名称> # 创建新物料项目
+mcco-script materiel create <物料名称> --template element # 创建基于 ElementUI 的新物料项目
+# mcco-script materiel create <物料名称> --template iview # 创建基于 view-design 的新物料项目
 cd <物料名称> # 进入项目
-npm run dev # 进入开发模式
-npm run doc # 进入文档模式
+npm run dev # 进入组件开发模式
+npm run doc # 进入文档开发模式
 npm run publish # 发布到物料库
 ```
 
 ::: tip 提示
 项目根目录下有 `mcco.config.json` 配置文件，需要配置 `storeUrl` 和 `accessToken` 方可发布。
 
-**storeUrl**: 物料市场的 origin
-**accessToken**: 登录物料市场，在右上角头像出有 `AccessToken` 选项，点击即可自动复制 AccessToken 到剪切板。
+**storeUrl**: 物料市场的 api 入口地址  
+**accessToken**: 登录物料市场，点击右上角头像选择 `AccessToken` 选项，即可自动复制 AccessToken 到剪切板。
 :::

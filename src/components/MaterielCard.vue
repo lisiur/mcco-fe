@@ -1,7 +1,7 @@
 <template>
   <div class="materiel-card-comp">
     <div class="preview">
-      <iframe ref="iframe" width="100%" height="100%" :src="demoUrl" frameborder="0" scrolling="no" />
+      <img :src="model.latest.preview" alt="">
     </div>
     <el-divider content-position="left">
       <span style="font-size: 16px;font-weight: bold; margin-right: 4px;">{{model.name}}</span>
@@ -36,12 +36,6 @@ export default {
       type: Object,
     }
   },
-  computed: {
-    demoUrl() {
-      const docUrl = this.model.latest.doc
-      return docUrl.slice(0, -10) + 'demo/demo1.html'
-    }
-  },
 }
 </script>
 
@@ -49,8 +43,25 @@ export default {
 .materiel-card-comp {
   .preview {
     height: 240px;
-    iframe {
-      pointer-events: none;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    &:hover {
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: unset;
+      }
     }
   }
   .footer {

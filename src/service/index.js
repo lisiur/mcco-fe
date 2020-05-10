@@ -17,7 +17,7 @@ export async function login({ username, password }) {
   })
 }
 
-export async function register({username, password}) {
+export async function register({ username, password }) {
   return await Axios.post(Api.register, {
     username,
     password,
@@ -101,14 +101,14 @@ export async function queryUsers(keyword) {
   })
 }
 
-export async function addMemberToProject({projectId, userId}) {
+export async function addMemberToProject({ projectId, userId }) {
   return await Axios.post(Api.addMemberToProject, {
     userId,
     projectId,
   })
 }
 
-export async function removeMemberFromProject({userId, projectId}) {
+export async function removeMemberFromProject({ userId, projectId }) {
   return await Axios.delete(Api.removeMemberFromProject, {
     params: {
       userId,
@@ -125,7 +125,7 @@ export async function getProjectMembers(projectId) {
   })
 }
 
-export async function addMaterielVerToProject({name, projectId, materielVerId}) {
+export async function addMaterielVerToProject({ name, projectId, materielVerId }) {
   return await Axios.post(Api.addMaterielToProject, {
     name,
     projectId,
@@ -141,7 +141,7 @@ export async function removeMaterielVerFromProject(id) {
   })
 }
 
-export async function changeProjectName({projectId, name}) {
+export async function changeProjectName({ projectId, name }) {
   return await Axios.post(Api.changeProjectName, {
     projectId,
     name,
@@ -150,4 +150,44 @@ export async function changeProjectName({projectId, name}) {
 
 export async function getAccessToken() {
   return await Axios.post(Api.getAccessToken)
+}
+
+export async function getProjectUrl(projectId) {
+  return await Axios.get(Api.getProjectUrl, {
+    params: {
+      projectId,
+    }
+  })
+}
+
+export async function exportMateriel(materielVerId) {
+  const res = await Axios.get(Api.exportMateriel, {
+    params: {
+      materielVerId
+    },
+    responseType: 'blob',
+  })
+  let a = document.createElement('a')
+  const filename = res.headers['content-disposition'].match(/filename=(.*?)$/)[1]
+  a.href = URL.createObjectURL(res.data)
+  a.download = filename
+  a.click()
+  URL.revokeObjectURL(a.href)
+  a = null
+}
+
+export async function exportProject(projectId) {
+  const res = await Axios.get(Api.exportProject, {
+    params: {
+      projectId
+    },
+    responseType: 'blob',
+  })
+  let a = document.createElement('a')
+  const filename = res.headers['content-disposition'].match(/filename=(.*?)$/)[1]
+  a.href = URL.createObjectURL(res.data)
+  a.download = filename
+  a.click()
+  URL.revokeObjectURL(a.href)
+  a = null
 }

@@ -25,6 +25,14 @@
           @click="onCopyProjectSourcePath"
           >
         复制项目地址</el-button>
+        <el-divider direction="vertical"></el-divider>
+        <el-button
+          type="text"
+          size="mini"
+          icon="el-icon-download"
+          @click="onExportProjectSource"
+          >
+        下载项目源码</el-button>
       </div>
     </el-page-header>
     <el-tabs type="border-card" value="materiels">
@@ -316,8 +324,12 @@ export default {
         this.$notify.success('项目名称已修改')
       })
     },
-    onCopyProjectSourcePath() {
-      const projectSourcePath = location.origin + '/mcco/api/source/project/' + this.project.id
+    async onExportProjectSource() {
+      this.$service.exportProject(this.project.id)
+    },
+    async onCopyProjectSourcePath() {
+      const url = (await this.$service.getProjectUrl(this.project.id)).data.data
+      const projectSourcePath = url
       copyTextToClipboard(projectSourcePath)
       .then(() => {
         this.$notify.success('复制成功')

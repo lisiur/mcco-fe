@@ -16,6 +16,7 @@ export default {
   createProject: `${context}/project/create`,
   changeProjectName: `${context}/project/changeName`,
   getProjectMateriels: `${context}/project/getMateriels`,
+  getProjectUrl: `${context}/project/getUrl`,
   changeProjectMaterielVersion: `${context}/project/changeMaterielVersion`,
   changeProjectMaterielVersionName: `${context}/project/changeMaterielVersionName`,
   getProjectMembers: `${context}/project/getMembers`,
@@ -23,7 +24,9 @@ export default {
   removeMemberFromProject: `${context}/project/removeMember`,
   addMaterielToProject: `${context}/project/addMateriel`,
   removeMaterielFromProject: `${context}/project/removeMateriel`,
+  exportProject: `${context}/project/export`,
 
   queryMateriel: `${context}/materiel/query`,
+  exportMateriel: `${context}/materiel/export`,
   queryMaterielVersion: `${context}/materiel/queryVersion`
 }

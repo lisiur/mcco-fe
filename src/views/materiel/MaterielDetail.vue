@@ -31,6 +31,15 @@
           type="text"
           size="mini"
           style="margin-left: 8px;"
+          icon="el-icon-download"
+          @click="onExport"
+          >下载源码
+        </el-button>
+        <el-divider direction="vertical"></el-divider>
+        <el-button
+          type="text"
+          size="mini"
+          style="margin-left: 8px;"
           icon="el-icon-full-screen"
           @click="onViewDocInNewWindow"
           >
@@ -127,6 +136,9 @@ export default {
         projectId: '',
       }
       this.addMaterielVerToProjectVisible = true
+    },
+    async onExport() {
+      this.$service.exportMateriel(this.materielVer.id)
     },
     onViewDocInNewWindow() {
       window.open(this.materielVer.doc)

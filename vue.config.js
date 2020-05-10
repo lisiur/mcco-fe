@@ -5,6 +5,11 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     proxy: {
+      '/mcco-materiel-doc': {
+        target: 'http://localhost:7001/public',
+        changeOrigin: true,
+        pathRewrite: { '^/mcco-materiel-doc': '' },
+      },
       '/': {
         target: 'http://localhost:7001',
         changeOrigin: true,
