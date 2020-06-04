@@ -10,6 +10,14 @@
     </el-divider>
     <div class="footer">
       <div class="tags" style="height: 28px;">
+        <template v-if="model.ui">
+          <el-button
+            size="mini"
+            type="text"
+            style="margin-right: 4px;">
+            「{{model.ui}}」
+          </el-button>
+        </template>
         <el-button
           v-for="item in model.tags"
           size="mini"
